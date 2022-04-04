@@ -101,7 +101,13 @@ docker run -i -t --name db003 -h db003 -p 3308:3306 <br>
 똑.같.이 <br>
 
 var , lib , log , etc 폴더 역할은 ? 
-답 : - <br>
+답 :  <br>
+variable의 약자입니다. 즉 잘 변한단 말입니다. /var에는 주로 각종 로그파일들이 기록되고 자동 압축됩니다. 모든 종류의 log파일들이 끊임없이 생성됩니다. <br>
+우분투에서는 기본적으로 MySQL을 설치하면 기본적으로 /var/lib/mysql에 저장 경로가 설정됩니다.<br>
+시스템의 거의 모든 설정파일이 존재하는 디렉토리. /etc/sysconfig(시스템 제어판용 설정파일), /etc/passwd(사용자관리 설정파일), /etc/named.conf(DNS 설정파일) 등과 같은 파일들이 존재한다. <br>
+
+시스템운용중에 생성되었다가 삭제되는 데이터를 일시적으로 저장하기 위한 디렉토리. 거의 모든 시스템로그파일은 /var/log 에 저장되고, DNS 의 zone 설정파일은 /var/named 에 저장되고, 메일파일은 /var/spool/mail 에 저장되며, 크론설정파일은 /var/spool/cron 디렉토리에 각각 저장됨. <br>
+
 
 슬레이브 데이터베이스에 들어가서 master host container ip 를 집어 넣어준다. 그전에 우선 user 를 만들어야겟지 <br>
 

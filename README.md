@@ -73,6 +73,59 @@ cd /var/log <br>
 
 
 
+-----
+
+4월 4일 -1 : Master-Slave Replication 구성하기 <br>
+
+mkdir -p /db/db002/log /db/db002/conf <br>
+mkdir -p /db/db002/data /db/db003/data <br>
+
+chmod 777 /db/db002 /db/db002/data. <br>
+chmod 777 /db/db003 /db/db003/data <br>
+
+등등 데이터, 폴더를 만들고 권한 주기 <br>
+
+my.cnf 같은 경우에는 chmod를 주고 폴터는 777를 주는 이유가 무엇일까 ? <br> 
+답 : - <br>
+
+슬레이브 컨테이너를 위해서 my.cnf <- my.cnf는 mysql 의 설정 파일임. 슬레이브니까 read_only 가 들어가있으며 server_id 와 report_host 와 다르다 <br>
+
+docker run -i -t --name db002 -h db002 -p 3307:3306 <br>
+-v /db/db002/data:/var/lib/mysql <br>
+-v /db/db002/log:/var/log/mysql <br>
+-v /db/db002/conf:/etc/percona-server.conf.d <br>
+-e MYSQL_ROOT_PASSWORD="root" -d percona:5.7.30 <br>
+
+
+docker run -i -t --name db003 -h db003 -p 3308:3306 <br>
+똑.같.이 <br>
+
+var , lib , log , etc 폴더 역할은 ? 
+답 : - <br>
+
+슬레이브 데이터베이스에 들어가서 master host container ip 를 집어 넣어준다. 그전에 우선 user 를 만들어야겟지 <br>
+
+---
+
+4월 4일 -2 : Bridge Network을 이용한 Replication 구성 <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

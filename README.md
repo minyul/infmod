@@ -109,7 +109,33 @@ var , lib , log , etc 폴더 역할은 ?
 
 4월 4일 -2 : Bridge Network을 이용한 Replication 구성 <br>
 
+Bridge Network 구성 <br>
 
+Container 같은 경우에는 재시작되면 해당 Container의 IP 가 변경 될 수 있다. <br>
+MysqL 의 Replication 설정이나 HA 설정에 IP를 사용하게 되면 Cotainer가 재시작 될 경우 변경된 IP 때문에  Replicatipon이 깨질 수 있따 <br>
+
+이러한 문제를 방지하기 위해 Bridge Network 를 구성하고 net alias 를 사용하여 IP 변경에도 문제가 발생하지 않도록 할 수 있따 <br>
+
+docker network ls <br>
+docker network create --driver bridge mybridge <br>
+
+브릿지를 넣어주기 위해서는 
+
+docker run -i -t --name db001 -h db001 -p 3306:3306 <br>
+--net mybridge --net-alias=db001 <br>
+-v /db/db001/data:/var/lib/mysql <br>
+-v /db/db001/log:/var/log/mysql <br>
+-v /db/db001/conf:/etc/percona-server.conf.d <br>
+-e MYSQL_ROOT_PASSWORD="root" -d percona:5.7.30 <br>
+
+
+HA : High Availabilty <br>
+
+
+
+                                                   
+                                                   
+                                             
 
 
 
